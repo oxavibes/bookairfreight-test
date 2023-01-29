@@ -1,4 +1,4 @@
-import { StoreProvider, useStore } from "@/store";
+import { StoreProvider } from "@/store";
 
 import QuoteBox from "@/components/quote/QuoteBox";
 import CreateQuote from "@/components/quote/CreateQuote";
