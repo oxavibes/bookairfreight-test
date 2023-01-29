@@ -20,7 +20,7 @@ const schema = yup
     quotePrice: yup
       .string()
       .required("Please enter a quote price")
-      .matches(/^[0-9]*$/, "Please enter a valid amount."),
+      .matches(/[0-9]*\.?[0-9]*/, "Please enter a valid amount."),
     channel: yup.string().required(),
   })
   .required();
