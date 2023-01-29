@@ -1,3 +1,5 @@
+import { useStore } from "@/store";
+
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -21,12 +23,10 @@ const schema = yup
   })
   .required();
 
-export default function CreateQuote({ dispatch }) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+export default function CreateQuote({ children }) {
+  const { state, dispatch } = useStore();
+
+  const opts = {
     mode: "onBlur",
     reValidateMode: "onSubmit",
     shouldFocusError: true,
@@ -38,7 +38,13 @@ export default function CreateQuote({ dispatch }) {
       quotePrice: 0,
       channel: "ocean",
     },
-  });
+  };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm(opts);
 
   const onSubmit = (value) => {
     dispatch({ type: "setFormState", value });
