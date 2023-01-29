@@ -1,9 +1,9 @@
 import { useImmerReducer } from "use-immer";
 
-import QuoteBox from "./components/quote/QuoteBox";
-import CreateQuote from "./components/quote/CreateQuote";
+import QuoteBox from "@/components/quote/QuoteBox";
+import CreateQuote from "@/components/quote/CreateQuote";
 
-import { randomNumber, getEstimatedDelivery } from "./helpers";
+import { randomNumber, getEstimatedDelivery } from "@/helpers";
 
 const initialState = {
   hasQuote: false,

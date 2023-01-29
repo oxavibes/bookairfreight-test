@@ -1,5 +1,5 @@
-import planeSvg from "../../assets/plane.svg";
-import shipSvg from "../../assets/ship.svg";
+import planeSvg from "@/assets/plane.svg";
+import shipSvg from "@/assets/ship.svg";
 
 export default function QuoteBox({ state }) {
   const svgSrc = state.formState.channel === "air" ? planeSvg : shipSvg;
