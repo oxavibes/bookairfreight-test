@@ -39,7 +39,7 @@ function storeReducer(draft, action) {
       let startRange;
       let endRange;
 
-      if (draft.channel === "air") {
+      if (draft.formState.channel === "air") {
         startRange = randomNumber(3, 7);
         endRange = startRange + randomNumber(2, 4);
       } else {
