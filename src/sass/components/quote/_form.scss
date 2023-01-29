@@ -36,6 +36,19 @@
   &-input {
     width: 100%;
     display: block;
+
+    &-invalid {
+      outline: none;
+      border: 1px solid #cc0033;
+      background-color: #fce4e4;
+    }
+
+    &-error {
+      font-size: 12px;
+      line-height: 15px;
+      margin: 5px 0 0;
+      color: #cc0033;
+    }
   }
 
   &-input:focus {

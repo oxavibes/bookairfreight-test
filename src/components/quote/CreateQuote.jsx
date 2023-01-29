@@ -63,12 +63,12 @@ export default function CreateQuote({ children }) {
           type="text"
           name="from"
           id="orig-country"
-          className="form-input"
+          className={errors.from ? "form-input-invalid" : "form-input"}
           aria-label="Origin country field"
           {...register("from")}
         />
 
-        {errors.from && <span>{errors.from.message} </span>}
+        {errors.from && <span className="form-input-error">{errors.from.message} </span>}
       </div>
 
       <div className="form-control">
@@ -80,12 +80,12 @@ export default function CreateQuote({ children }) {
           type="text"
           name="to"
           id="dest-country"
-          className="form-input"
+          className={errors.to ? "form-input-invalid" : "form-input"}
           aria-label="Destination country field"
           {...register("to")}
         />
 
-        {errors.to && <span>{errors.to.message} </span>}
+        {errors.to && <span className="form-input-error">{errors.to.message} </span>}
       </div>
 
       <div className="form-control">
@@ -93,9 +93,15 @@ export default function CreateQuote({ children }) {
           Quote price
         </label>
 
-        <input type="text" id="quote-price" name="quotePrice" className="form-input" {...register("quotePrice")} />
+        <input
+          type="text"
+          id="quote-price"
+          name="quotePrice"
+          className={errors.quotePrice ? "form-input-invalid" : "form-input"}
+          {...register("quotePrice")}
+        />
 
-        {errors.quotePrice && <span>{errors.quotePrice.message} </span>}
+        {errors.quotePrice && <span className="form-input-error">{errors.quotePrice.message} </span>}
       </div>
 
       <div className="form-control">
@@ -108,7 +114,7 @@ export default function CreateQuote({ children }) {
           <option value="air">Air</option>
         </select>
 
-        {errors.channel && <span>{errors.channel.message} </span>}
+        {errors.channel && <span className="form-input-error">{errors.channel.message} </span>}
       </div>
 
       <div className="form-control">
