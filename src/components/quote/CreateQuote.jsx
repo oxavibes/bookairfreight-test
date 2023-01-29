@@ -9,12 +9,12 @@ const schema = yup
   .shape({
     from: yup
       .string()
-      .min(4, "Origin country must be at least 4 characters")
+      // .min(4, "Origin country must be at least 4 characters")
       .required("Please enter the origin country.")
       .matches(/^[aA-zZ]+$/, "Please enter a valid country."),
     to: yup
       .string()
-      .min(4, "Destination country must be at least 4 characters")
+      //.min(4, "Destination country must be at least 4 characters")
       .required("Please enter the destination country.")
       .matches(/^[aA-zZ]+$/, "Please enter a valid country."),
     quotePrice: yup
