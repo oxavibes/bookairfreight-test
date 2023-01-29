@@ -1,6 +1,8 @@
+import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+
+// import "./CreateQuote.scss";
 
 const schema = yup
   .object()
@@ -105,7 +107,9 @@ export default function CreateQuote({ dispatch }) {
         {errors.channel && <span>{errors.channel.message} </span>}
       </div>
 
-      <button className="form-button">Create quote</button>
+      <div className="form-control">
+        <button className="form-button">Create quote</button>
+      </div>
     </form>
   );
 }

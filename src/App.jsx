@@ -1,34 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useImmerReducer } from "use-immer";
 
-function App() {
-  const [count, setCount] = useState(0)
+import QuoteBox from "./components/quote/QuoteBox";
+import CreateQuote from "./components/quote/CreateQuote";
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+import { randomNumber, getEstimatedDelivery } from "./helpers";
+
+const initialState = {
+  hasQuote: false,
+  formState: null,
+};
+
+function storeReducer(draft, action) {
+  switch (action.type) {
+    case "setField": {
+      draft[action.field] = action.value;
+      break;
+    }
+    case "setFormState": {
+      return {
+        ...draft,
+        ["formState"]: {
+          ...action.value,
+        },
+      };
+    }
+    case "calculateShipping": {
+      let startRange;
+      let endRange;
+
+      if (draft.channel === "air") {
+        startRange = randomNumber(3, 7);
+        endRange = startRange + randomNumber(2, 4);
+      } else {
+        startRange = randomNumber(25, 30);
+        endRange = startRange + randomNumber(5, 10);
+      }
+
+      draft.estimatedDays = `${startRange} - ${endRange} days`;
+      draft.estimatedDelivery = getEstimatedDelivery(startRange, endRange);
+
+      break;
+    }
+
+    default:
+      break;
+  }
 }
 
-export default App
+function App() {
+  const [state, dispatch] = useImmerReducer(storeReducer, initialState);
+
+  return (
+    <div className="container">
+      <CreateQuote dispatch={dispatch} />
+      {state.hasQuote && <QuoteBox state={state} />}
+    </div>
+  );
+}
+
+export default App;
